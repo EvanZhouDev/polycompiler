@@ -4,7 +4,6 @@
 	"description": "Merge Python and JS code into one file that can be run in both languages.",
 	"license": "GPL-3.0-only",
 	"author": "",
-	"type": "module",
 	"bin": {
 		"polycompiler": "bin/merge.js"
 	},
