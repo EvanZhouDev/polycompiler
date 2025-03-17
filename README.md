@@ -48,6 +48,10 @@ And, running it with `python3` will execute the Python
 python3 out.py.js
 ```
 
+## Examples
+
+You find some examples of input and output code in <a href="./examples">Examples</a>
+
 ## Why Polycompiler?
 
 The best answer for this is honestly "for fun". However, it could also possibly be a possible solution for a single file that can be targeted to both Python and JS audiences (who may perhaps not have the other installed).
