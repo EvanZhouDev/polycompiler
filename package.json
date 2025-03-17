@@ -1,23 +1,19 @@
 {
-	"name": "polycompiler",
-	"version": "1.0.0",
-	"description": "Merge Python and JS code into one file that can be run in both languages.",
-	"license": "GPL-3.0-only",
-	"author": "",
-	"type": "module",
-	"bin": {
-		"polycompiler": "bin/merge.js"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/EvanZhouDev/polycompiler.git"
-	},
-	"homepage": "https://github.com/EvanZhouDev/polycompiler",
-	"keywords": [
-		"js",
-		"python"
-	],
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
-	}
+  "name": "polycompiler",
+  "version": "1.0.0",
+  "description": "Merge Python and JS code into one file that can be run in both languages.",
+  "license": "GPL-3.0-only",
+  "author": "",
+  "bin": {
+    "polycompiler": "bin/merge"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EvanZhouDev/polycompiler.git"
+  },
+  "homepage": "https://github.com/EvanZhouDev/polycompiler",
+  "keywords": [
+    "js",
+    "python"
+  ]
 }

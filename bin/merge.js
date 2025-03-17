@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
-import fs from 'fs/promises';
-import path from 'path';
+const fs = require('fs/promises');
+const path = require('path');
 
 async function main() {
     const args = process.argv.slice(2);
+    console.log("This script is running in JavaScript");
 
     if (args.length < 2) {
         console.error('Usage: polycompiler <file1> <file2> [output-file]');
