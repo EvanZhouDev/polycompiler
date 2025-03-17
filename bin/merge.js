@@ -2,6 +2,11 @@
 
 import fs from 'fs/promises';
 import path from 'path';
+import { exec } from 'child_process';
+import { promisify } from 'util';
+import os from 'os';
+
+const execAsync = promisify(exec);
 
 async function main() {
     const args = process.argv.slice(2);
@@ -40,6 +45,26 @@ async function main() {
         process.exit(1);
     }
 
+    // Validate Python file
+    const pythonFilePath = isPython(ext1) ? file1Path : file2Path;
+    try {
+        await validatePythonFile(pythonFilePath);
+    } catch (err) {
+        console.error(`Error: Python file ${pythonFilePath} is not valid.`);
+        console.error(err.stderr);
+        process.exit(1);
+    }
+
+    // Validate JavaScript file
+    const jsFilePath = isJavaScript(ext1) ? file1Path : file2Path;
+    try {
+        await execAsync(`node -c ${jsFilePath}`);
+    } catch (err) {
+        console.error(`Error: JavaScript file ${jsFilePath} is not valid.`);
+        console.error(err.stderr);
+        process.exit(1);
+    }
+
     // Read file contents
     const content1 = await fs.readFile(file1Path, 'utf8');
     const content2 = await fs.readFile(file2Path, 'utf8');
@@ -58,6 +83,16 @@ async function main() {
     // Write the result to the output file
     await fs.writeFile(outputPath, merged);
     console.log(`Merged files written to ${outputPath}`);
+}
+
+/**
+ * Validates a Python file by checking its syntax.
+ * @param {string} pythonFilePath - Path to the Python file.
+ * @returns {Promise<void>}
+ */
+async function validatePythonFile(pythonFilePath) {
+    const pythonCommand = os.platform() === 'win32' ? 'python' : 'python3';
+    await execAsync(`${pythonCommand} -m py_compile ${pythonFilePath}`);
 }
 
 /**
@@ -82,6 +117,7 @@ function mergeFiles(pythonContent, jsContent) {
     return `1 // (lambda: exec("""${escapedPythonContent}""", globals()) or 1)()
 lambda: eval("${escapedJsContent}")`;
 }
+
 main().catch(err => {
     console.error('Error:', err);
     process.exit(1);
