@@ -79,8 +79,7 @@ function mergeFiles(pythonContent, jsContent) {
         .replace(/\n/g, '\\n')          // Escape newlines
         .replace(/"/g, '\\"');          // Escape double quotes
 
-    return `1 // (lambda: exec("""${escapedPythonContent}""", globals()) or 1)()
-lambda: eval("${escapedJsContent}")`;
+    return `1 // 1  or """ \n ${escapedJsContent}\n/* """ \n ${escapedPythonContent}\n# */`;
 }
 main().catch(err => {
     console.error('Error:', err);
